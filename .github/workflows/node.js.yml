@@ -26,11 +26,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Set up the Key file
-    - run: 'echo "$SSH_KEY" > "private_key.pem"'
+      run: 'echo "$SSH_KEY" > "private_key.pem"'
       shell: bash
       env:
         SSH_KEY: ${{secrets.SSH_KEY}}
     - name: Connect to the server
-    - run: ssh -i "private_key.pem" ubuntu@ec2-18-191-48-2.us-east-2.compute.amazonaws.com
-    - run: ls
+      run: |
+        ssh -i "private_key.pem" ubuntu@ec2-18-191-48-2.us-east-2.compute.amazonaws.com
+        ls
     
