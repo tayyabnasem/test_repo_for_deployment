@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Set up the Key file
-      run: echo "$SSH_KEY"
+      run: echo "This is the key $SSH_KEY "
       shell: bash
       env:
         SSH_KEY: ${{secrets.SSH_KEY}}
