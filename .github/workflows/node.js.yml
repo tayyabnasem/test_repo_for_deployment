@@ -19,12 +19,20 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Set up the Key file
-      run: echo "This is the key $SSH_KEY "
-      env:
-        SSH_KEY: ${{secrets.SSH_KEY}}
-    - name: Display files
-      run: ls
-    - name: Display Private key file
-      run: cat private_key.pem
-    
+      - name: Deploy in EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY  }}
+          HOSTNAME: ${{ secrets.REMOTE_HOST  }}
+          USER_NAME: ${{ secrets.REMOTE_USER  }}
+
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          ls
+
+          #Now we have got the access of EC2 and we will start the deploy .
+          #cd /home/ubuntu/CounterApp &&
+          #git checkout master &&
+          #git fetch --all &&
+          #git reset --hard origin/master &&
+          #git pull origin master &&
