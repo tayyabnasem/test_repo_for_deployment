@@ -27,7 +27,7 @@ jobs:
         cache: 'npm'
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@v2
-      env:
+      env: 
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           SOURCE: "./"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
