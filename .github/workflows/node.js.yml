@@ -20,7 +20,9 @@ jobs:
 
     steps:
     - name: Set up the Key file
-      run: 'echo "$SSH_KEY" > "private_key.pem"'
+      run: |
+        echo "$SSH_KEY"
+        'echo "$SSH_KEY" > "private_key.pem"'
       shell: bash
       env:
         SSH_KEY: ${{secrets.SSH_KEY}}
