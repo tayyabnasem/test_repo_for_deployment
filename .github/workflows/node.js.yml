@@ -26,7 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@V2
+      uses: easingthemes/ssh-deploy@v2
       env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           SOURCE: "./"
