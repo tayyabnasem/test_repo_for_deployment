@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
- 
+
     strategy:
       matrix:
         node-version: [12.x]
@@ -28,3 +28,8 @@ jobs:
           script: |
             whoami
             ls -al
+            pm2 stop app
+            cd test_repo_for_deployment
+            git pull
+            npm ci
+            pm2 start app.js
